@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>黑料入口每日大赛-黑料入口每日大赛最新榜单_每日大赛吃瓜黑料聚合</title>
+<meta name="description" content="黑料入口每日大赛首页，聚合每日大赛爆料与吃瓜热门内容，提供当日榜单、热门黑料条目与入口导航，帮助访问者快速了解每日大赛热点动向。">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2314121a'/%3E%3Cpath d='M18 20h28l-4 24H22z' fill='%23ff5a5f'/%3E%3Ccircle cx='32' cy='30' r='5' fill='%23ffe8a3'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --ink:#14121a;
+    --ink-2:#241f2e;
+    --paper:#faf7f2;
+    --card:#ffffff;
+    --line:#e6dfd4;
+    --accent:#ff5a5f;
+    --accent-soft:#ffe7e4;
+    --gold:#c9992f;
+    --muted:#6d6577;
+    --radius:16px;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",system-ui,sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.75;
+    font-size:16px;
+  }
+  a{color:inherit;text-decoration:none;}
+  img,svg{display:block;}
+  .wrap{width:100%;max-width:1120px;margin:0 auto;padding:0 20px;}
+
+  /* header */
+  .site-head{
+    background:var(--ink);
+    color:#f7f3ec;
+    border-bottom:3px solid var(--accent);
+  }
+  .head-inner{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:16px;padding:14px 0;flex-wrap:wrap;
+  }
+  .brand{display:flex;align-items:center;gap:12px;min-width:0;}
+  .brand-mark{width:40px;height:40px;flex:0 0 auto;}
+  .brand-text{
+    font-size:19px;font-weight:800;letter-spacing:.5px;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  }
+  .brand-text em{font-style:normal;color:var(--accent);}
+  nav.main-nav{display:flex;gap:6px;flex-wrap:wrap;}
+  nav.main-nav a{
+    padding:7px 13px;border-radius:999px;font-size:14px;font-weight:600;
+    color:#ded7cd;border:1px solid transparent;transition:.2s;
+  }
+  nav.main-nav a:hover,nav.main-nav a.active{
+    color:#fff;background:rgba(255,90,95,.18);border-color:rgba(255,90,95,.55);
+  }
+
+  /* hero */
+  .hero{
+    background:
+      radial-gradient(900px 380px at 85% -10%, rgba(255,90,95,.22), transparent 65%),
+      linear-gradient(160deg,#1b1723 0%, #14121a 60%, #201826 100%);
+    color:#f7f3ec;
+    padding:52px 0 46px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";position:absolute;right:-80px;bottom:-90px;width:340px;height:340px;
+    border-radius:50%;border:26px solid rgba(255,90,95,.10);
+  }
+  .hero-grid{display:grid;grid-template-columns:1.35fr .9fr;gap:38px;align-items:center;position:relative;z-index:1;}
+  .tagline{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:13px;font-weight:700;letter-spacing:1px;
+    color:var(--accent);background:rgba(255,90,95,.12);
+    border:1px solid rgba(255,90,95,.4);
+    padding:5px 12px;border-radius:999px;margin-bottom:18px;
+  }
+  .tagline .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(255,90,95,.2);}
+  h1{
+    font-size:clamp(28px,4.4vw,44px);
+    line-height:1.25;margin:0 0 16px;font-weight:900;letter-spacing:1px;
+  }
+  h1 .hl{color:var(--accent);}
+  .hero p.lead{
+    margin:0 0 26px;color:#cdc6d4;font-size:16px;max-width:34em;
+  }
+  .hero-actions{display:flex;gap:12px;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:12px 24px;border-radius:999px;font-weight:700;font-size:15px;
+    border:1px solid transparent;transition:.2s;cursor:pointer;
+  }
+  .btn-primary{background:var(--accent);color:#fff;box-shadow:0 10px 24px -10px rgba(255,90,95,.85);}
+  .btn-primary:hover{background:#ff7377;transform:translateY(-1px);}
+  .btn-ghost{background:transparent;color:#f0eae1;border-color:rgba(255,255,255,.28);}
+  .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.07);}
+  .hero-panel{
+    background:rgba(255,255,255,.055);
+    border:1px solid rgba(255,255,255,.14);
+    border-radius:var(--radius);
+    padding:20px 22px;
+    backdrop-filter:blur(2px);
+  }
+  .hero-panel h2{font-size:14px;margin:0 0 14px;color:#ffd9d7;letter-spacing:1px;font-weight:700;}
+  .stat-list{list-style:none;margin:0;padding:0;display:grid;gap:12px;}
+  .stat-list li{display:flex;justify-content:space-between;gap:12px;font-size:14px;color:#d5cddb;border-bottom:1px dashed rgba(255,255,255,.14);padding-bottom:10px;}
+  .stat-list li:last-child{border-bottom:0;padding-bottom:0;}
+  .stat-list b{color:#fff;font-size:15px;}
+  .stat-list span.k{color:#a99fb4;}
+
+  /* main sections */
+  main{padding:54px 0 10px;}
+  section.block{margin-bottom:56px;}
+  .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:22px;flex-wrap:wrap;}
+  .sec-head h2{
+    font-size:24px;margin:0;font-weight:900;letter-spacing:.5px;position:relative;padding-left:16px;
+  }
+  .sec-head h2::before{
+    content:"";position:absolute;left:0;top:6px;bottom:6px;width:5px;border-radius:3px;background:var(--accent);
+  }
+  .sec-head .sub{color:var(--muted);font-size:14px;margin:0;}
+  .sec-head .more{font-size:14px;font-weight:700;color:var(--accent);}
+
+  .card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 22px 20px;transition:.22s;display:flex;flex-direction:column;
+  }
+  .card:hover{border-color:#f0b6b3;box-shadow:0 16px 34px -22px rgba(20,18,26,.5);transform:translateY(-3px);}
+  .card .badge{
+    display:inline-block;font-size:12px;font-weight:800;letter-spacing:.5px;
+    color:var(--accent);background:var(--accent-soft);border-radius:6px;padding:2px 9px;margin-bottom:12px;align-self:flex-start;
+  }
+  .card h3{font-size:17px;margin:0 0 10px;font-weight:800;line-height:1.5;}
+  .card p{margin:0;font-size:14.5px;color:#4d4657;line-height:1.8;}
+  .card .meta{margin-top:16px;font-size:13px;color:var(--muted);display:flex;gap:12px;flex-wrap:wrap;}
+
+  /* ranking */
+  .rank-wrap{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;}
+  .rank-row{
+    display:grid;grid-template-columns:56px 1fr auto;gap:16px;align-items:center;
+    padding:16px 22px;border-bottom:1px solid #f1ece3;
+  }
+  .rank-row:last-child{border-bottom:0;}
+  .rank-no{
+    font-weight:900;font-size:19px;color:#b7afc1;font-variant-numeric:tabular-nums;
+  }
+  .rank-row.top .rank-no{color:var(--accent);}
+  .rank-row h3{font-size:15.5px;margin:0 0 4px;font-weight:800;}
+  .rank-row p{margin:0;font-size:13.5px;color:var(--muted);}
+  .rank-tag{
+    font-size:12.5px;font-weight:800;color:var(--gold);
+    background:#fdf6e6;border:1px solid #f2e2bb;border-radius:999px;padding:3px 12px;white-space:nowrap;
+  }
+
+  /* columns */
+  .two-col{display:grid;grid-template-columns:1.5fr 1fr;gap:24px;align-items:start;}
+  .article-box{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px;}
+  .article-box h2{font-size:22px;margin:0 0 14px;font-weight:900;}
+  .article-box h3{font-size:17px;margin:22px 0 8px;font-weight:800;}
+  .article-box p{margin:0 0 12px;font-size:15px;color:#423b4c;line-height:1.85;}
+  .article-box ul{margin:0 0 12px;padding-left:20px;color:#423b4c;font-size:15px;}
+  .article-box li{margin-bottom:6px;}
+  .side-box{display:grid;gap:20px;}
+  .side-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px;}
+  .side-card h3{font-size:16px;margin:0 0 12px;font-weight:800;}
+  .side-card p{margin:0 0 10px;font-size:14px;color:#4d4657;}
+  .chip-list{display:flex;flex-wrap:wrap;gap:8px;}
+  .chip{
+    font-size:13px;font-weight:700;color:#3f3849;background:#f4efe7;
+    border-radius:999px;padding:5px 12px;border:1px solid #ece4d8;
+  }
+  .download-note{font-size:13px;color:var(--muted);margin-top:10px;}
+
+  /* search / filter */
+  .filter-bar{
+    display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;align-items:center;
+  }
+  .filter-bar input{
+    flex:1 1 240px;min-width:0;
+    padding:12px 16px;border-radius:999px;border:1px solid var(--line);
+    background:#fff;font-size:15px;font-family:inherit;color:var(--ink);
+    outline:none;
+  }
+  .filter-bar input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(255,90,95,.14);}
+  .filter-bar .count{font-size:13.5px;color:var(--muted);white-space:nowrap;}
+  .empty-tip{display:none;padding:22px;text-align:center;color:var(--muted);font-size:14.5px;background:#fff;border:1px dashed var(--line);border-radius:var(--radius);}
+  .empty-tip.show{display:block;}
+
+  /* footer */
+  footer{
+    background:var(--ink);color:#b8b0c2;margin-top:30px;
+    border-top:3px solid var(--accent);
+  }
+  .foot-top{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px;padding:42px 0 30px;}
+  .foot-brand{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+  .foot-brand .brand-mark{width:36px;height:36px;}
+  .foot-brand strong{color:#fff;font-size:17px;font-weight:800;}
+  footer p{font-size:13.5px;line-height:1.9;margin:0;color:#9b92a8;}
+  footer h4{color:#fff;font-size:14px;margin:0 0 12px;font-weight:800;letter-spacing:.5px;}
+  footer ul{list-style:none;margin:0;padding:0;display:grid;gap:8px;}
+  footer ul a{font-size:13.5px;color:#b8b0c2;transition:.2s;}
+  footer ul a:hover{color:var(--accent);}
+  .foot-bottom{
+    border-top:1px solid rgba(255,255,255,.1);
+    padding:16px 0;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+    font-size:12.5px;color:#857c93;
+  }
+
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr;gap:28px;}
+    .card-grid{grid-template-columns:repeat(2,1fr);}
+    .two-col{grid-template-columns:1fr;}
+    .foot-top{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:640px){
+    body{font-size:15.5px;}
+    .head-inner{padding:12px 0;}
+    .brand-text{font-size:16px;}
+    nav.main-nav a{padding:6px 10px;font-size:13px;}
+    .hero{padding:38px 0 34px;}
+    .hero p.lead{font-size:15px;}
+    .btn{width:100%;justify-content:center;}
+    .card-grid{grid-template-columns:1fr;}
+    .rank-row{grid-template-columns:38px 1fr;padding:14px 16px;row-gap:6px;}
+    .rank-tag{grid-column:2;justify-self:start;}
+    .article-box{padding:22px 18px;}
+    .foot-top{grid-template-columns:1fr;gap:26px;padding:32px 0 22px;}
+    .sec-head h2{font-size:21px;}
+    main{padding:38px 0 6px;}
+    section.block{margin-bottom:42px;}
+  }
+</style>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap head-inner">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="14" fill="#241f2e"/>
+        <path d="M18 20h28l-4 24H22z" fill="#ff5a5f"/>
+        <circle cx="32" cy="30" r="5" fill="#ffe8a3"/>
+        <path d="M26 40h12" stroke="#14121a" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+      <span class="brand-text">黑料入口每日大赛</span>
+    </div>
+    <nav class="main-nav" aria-label="主导航">
+      <a href="#today" class="active">今日入口</a>
+      <a href="#board">每日榜单</a>
+      <a href="#explain">热点说明</a>
+      <a href="#browse">分类浏览</a>
+      <a href="#about">关于本站</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="tagline"><span class="dot"></span>每日更新 · 吃瓜热点聚合</span>
+      <h1>黑料入口每日大赛</h1>
+      <p class="lead">这里是每日大赛热点内容的集中入口：当日榜单、热门条目摘要与分类浏览按更新顺序排列，访问者可以从一屏之内看到今天最受关注的几条内容，再按需深入阅读。</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#board">查看今日榜单</a>
+        <a class="btn btn-ghost" href="#browse">按分类浏览</a>
+      </div>
+    </div>
+    <aside class="hero-panel">
+      <h2>今日入口概览</h2>
+      <ul class="stat-list">
+        <li><span class="k">榜单条目</span><b>8 条</b></li>
+        <li><span class="k">收录分类</span><b>6 个</b></li>
+        <li><span class="k">更新节奏</span><b>每日一轮</b></li>
+        <li><span class="k">浏览方式</span><b>免费直接访问</b></li>
+      </ul>
+    </aside>
+  </div>
+</section>
+
+<main class="wrap">
+
+  <section class="block" id="today">
+    <div class="sec-head">
+      <h2>今日入口速览</h2>
+      <p class="sub">三条最常被点开的入口，对应不同的浏览目的</p>
+    </div>
+    <div class="card-grid">
+      <article class="card">
+        <span class="badge">榜单</span>
+        <h3>先看当日排名</h3>
+        <p>每日大赛的条目按热度排序，排名靠前的通常是当天讨论最集中的内容。从榜单开始浏览，可以避免在零散条目里反复翻找。</p>
+        <div class="meta"><span>更新：每日一轮</span><span>位置：第 1 屏</span></div>
+      </article>
+      <article class="card">
+        <span class="badge">摘要</span>
+        <h3>再读条目摘要</h3>
+        <p>每条内容都配有简短摘要，说明事件的大致范围与讨论焦点，方便读者在点开前判断是否与自己的兴趣相关。</p>
+        <div class="meta"><span>形式：短摘要</span><span>长度：2–3 句</span></div>
+      </article>
+      <article class="card">
+        <span class="badge">分类</span>
+        <h3>按分类挑选</h3>
+        <p>如果只关注某一类内容，可以直接进入分类浏览区，用标签和搜索框缩小范围，减少无关条目的干扰。</p>
+        <div class="meta"><span>分类：6 个</span><span>支持搜索</span></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="block" id="board">
+    <div class="sec-head">
+      <h2>每日大赛榜单</h2>
+      <p class="sub">按当日讨论热度排列，排名每日重新计算</p>
+    </div>
+    <div class="rank-wrap">
+      <div class="rank-row top">
+        <div class="rank-no">01</div>
+        <div>
+          <h3>榜单头条：当日讨论最集中的条目</h3>
+          <p>通常位于黑料入口每日大赛首页首位，摘要概括事件起因与当前讨论方向。</p>
+        </div>
+        <span class="rank-tag">热度最高</span>
+      </div>
+      <div class="rank-row top">
+        <div class="rank-no">02</div>
+        <div>
+          <h3>争议条目：多方说法并存</h3>
+          <p>同一事件出现不同版本，摘要并列呈现各方说法，读者可自行对照判断。</p>
+        </div>
+        <span class="rank-tag">讨论活跃</span>
+      </div>
+      <div class="rank-row top">
+        <div class="rank-no">03</div>
+        <div>
+          <h3>延续条目：前几日话题的新进展</h3>
+          <p>此前出现过的话题继续发酵，本条目补充新出现的细节与回应。</p>
+        </div>
+        <span class="rank-tag">持续跟进</span>
+      </div>
+      <div class="rank-row">
+        <div class="rank-no">04</div>
+        <div>
+          <h3>短平快条目：信息量集中的片段</h3>
+          <p>篇幅较短，以截图、短句或一句话概括为主，适合快速浏览。</p>
+        </div>
+        <span class="rank-tag">速读</span>
+      </div>
+      <div class="rank-row">
+        <div class="rank-no">05</div>
+        <div>
+          <h3>回应类条目：当事人或相关方表态</h3>
+          <p>围绕先前讨论出现的公开回应，摘要保留原话要点，不做额外延伸。</p>
+        </div>
+        <span class="rank-tag">回应</span>
+      </div>
+      <div class="rank-row">
+        <div class="rank-no">06</div>
+        <div>
+          <h3>回顾条目：旧话题被重新提起</h3>
+          <p>早期内容因新讨论再次进入榜单，摘要注明原始时间与再次走热的原因。</p>
+        </div>
+        <span class="rank-tag">回顾</span>
+      </div>
+      <div class="rank-row">
+        <div class="rank-no">07</div>
+        <div>
+          <h3>冷门条目：讨论量上升中</h3>
+          <p>热度尚在上升，排名可能在一日内变化，适合愿意提前关注的读者。</p>
+        </div>
+        <span class="rank-tag">上升中</span>
+      </div>
+      <div class="rank-row">
+        <div class="rank-no">08</div>
+        <div>
+          <h3>补充条目：为前序内容提供背景</h3>
+          <p>不单独构成热点，但能帮助读者理解榜单前几条的来龙去脉。</p>
+        </div>
+        <span class="rank-tag">背景</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="explain">
+    <div class="two-col">
+      <article class="article-box">
+        <h2>这个入口在做什么</h2>
+        <p>黑料入口每日大赛把分散在各处的每日大赛讨论汇总到同一页面。它不生产内容，也不对条目本身下结论，而是承担“入口”的角色：把当天被反复提起的内容挑出来，附上摘要和分类，让访问者用更短的时间了解大致情况。</p>
+        <p>页面结构按浏览顺序组织。先给榜单，解决“今天有什么”的问题；再给摘要，解决“这条讲什么”的问题；最后给分类与搜索，解决“我只想看某一类”的问题。三个层次对应三种常见的访问需求，顺序上不建议颠倒。</p>
+        <h3>阅读时需要注意</h3>
+        <ul>
+          <li>摘要只是要点概括，不能替代原始内容。</li>
+          <li>争议条目往往存在多个版本，单一说法不足以作为判断依据。</li>
+          <li>榜单反映的是讨论热度，不等同于事实认定的轻重。</li>
+          <li>条目可能随讨论变化而调整，隔日再看时内容会有所不同。</li>
+        </ul>
+        <h3>关于更新</h3>
+        <p>榜单每日重新排列一次，新条目进入、旧条目下沉。延续性话题会保留在榜内并标注状态，方便读者区分“新出现”和“仍在讨论”。如果某条内容在短时间内反复上榜，通常说明讨论尚未收敛。</p>
+      </article>
+      <aside class="side-box">
+        <div class="side-card">
+          <h3>常见分类</h3>
+          <div class="chip-list">
+            <span class="chip">人物话题</span>
+            <span class="chip">网络事件</span>
+            <span class="chip">争议回应</span>
+            <span class="chip">旧事回顾</span>
+            <span class="chip">速读片段</span>
+            <span class="chip">背景补充</span>
+          </div>
+        </div>
+        <div class="side-card">
+          <h3>站点说明</h3>
+          <p>本站为内容聚合入口，条目摘要由编辑按公开讨论整理，不构成对任何个人或事件的定性。</p>
+          <p>如发现摘要与原始内容不符，可通过页尾联系方式反馈。</p>
+        </div>
+        <div class="side-card">
+          <h3>离线保存</h3>
+          <p>可将本页榜单结构保存为本地副本，便于对照前后两日的排名变化。</p>
+          <a class="btn btn-primary" style="margin-top:8px;padding:10px 18px;font-size:14px;" href="#" data-download-placeholder="true" aria-disabled="true" tabindex="-1">下载</a>
+          <p class="download-note">下载入口待接入，当前页面仅供在线浏览。</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="block" id="browse">
+    <div class="sec-head">
+      <h2>分类浏览</h2>
+      <p class="sub">输入关键词筛选条目，结果即时显示在下方</p>
+    </div>
+    <div class="filter-bar">
+      <input type="search" id="kw" placeholder="输入关键词，例如：回应、回顾、争议" aria-label="按关键词筛选条目">
+      <span class="count" id="count">共 8 条</span>
+    </div>
+    <div class="rank-wrap" id="browseList">
+      <div class="rank-row" data-k="榜单 头条 热度">
+        <div class="rank-no">A</div>
+        <div><h3>榜单头条</h3><p>当日讨论最集中的条目，适合作为浏览起点。</p></div>
+        <span class="rank-tag">热度</span>
+      </div>
+      <div class="rank-row" data-k="争议 多方 说法">
+        <div class="rank-no">B</div>
+        <div><h3>争议条目</h3><p>多方说法并存，摘要并列呈现，便于对照。</p></div>
+        <span class="rank-tag">争议</span>
+      </div>
+      <div class="rank-row" data-k="延续 进展 跟进">
+        <div class="rank-no">C</div>
+        <div><h3>延续条目</h3><p>此前话题继续发酵，补充新出现的细节。</p></div>
+        <span class="rank-tag">跟进</span>
+      </div>
+      <div class="rank-row" data-k="速读 短 片段">
+        <div class="rank-no">D</div>
+        <div><h3>速读片段</h3><p>篇幅短、信息集中，适合快速过一遍。</p></div>
+        <span class="rank-tag">速读</span>
+      </div>
+      <div class="rank-row" data-k="回应 表态 当事人">
+        <div class="rank-no">E</div>
+        <div><h3>回应类条目</h3><p>相关方公开表态，保留原话要点。</p></div>
+        <span class="rank-tag">回应</span>
+      </div>
+      <div class="rank-row" data-k="回顾 旧话题 重提">
+        <div class="rank-no">F</div>
+        <div><h3>回顾条目</h3><p>旧话题被重新提起，注明原始时间。</p></div>
+        <span class="rank-tag">回顾</span>
+      </div>
+      <div class="rank-row" data-k="冷门 上升 变化">
+        <div class="rank-no">G</div>
+        <div><h3>上升条目</h3><p>讨论量上升中，排名可能在一日内变化。</p></div>
+        <span class="rank-tag">上升</span>
+      </div>
+      <div class="rank-row" data-k="背景 补充 来龙去脉">
+        <div class="rank-no">H</div>
+        <div><h3>背景补充</h3><p>为前序内容提供背景，帮助理解来龙去脉。</p></div>
+        <span class="rank-tag">背景</span>
+      </div>
+    </div>
+    <p class="empty-tip" id="emptyTip">没有匹配的条目，换个关键词试试。</p>
+  </section>
+
+  <section class="block" id="about">
+    <div class="sec-head">
+      <h2>关于黑料入口每日大赛</h2>
+    </div>
+    <div class="article-box">
+      <p>黑料入口每日大赛是一个以“入口”为定位的聚合页面。它把每日大赛相关的讨论按天聚在一起，用榜单、摘要和分类三种方式呈现，帮助访问者在信息量很大的情况下先建立整体印象，再决定读哪一条。</p>
+      <p>页面上的所有判断都限定在“讨论热度”范围内。排名高低说明的是被提及的频次，不说明事情本身的对错。摘要只保留要点，细节仍需回到原始内容核对。对于存在多个版本的话题，页面会并列呈现，而不是替读者选择其中一个。</p>
+      <p>如果你第一次来到黑料入口每日大赛，建议从今日榜单开始，按顺序往下读几条摘要，再进入分类浏览挑选感兴趣的方向。这样比随机点开条目更容易形成连贯的理解。榜单每日更新，隔一段时间回来复查，可以看到同一话题的讨论是如何变化的。</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot-top">
+    <div>
+      <div class="foot-brand">
+        <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+          <rect width="64" height="64" rx="14" fill="#2c2638"/>
+          <path d="M18 20h28l-4 24H22z" fill="#ff5a5f"/>
+          <circle cx="32" cy="30" r="5" fill="#ffe8a3"/>
+        </svg>
+        <strong>黑料入口每日大赛</strong>
+      </div>
+      <p>每日大赛热点内容的聚合入口，按日整理榜单、摘要与分类，方便访问者快速了解当天讨论的集中方向。</p>
+    </div>
+    <div>
+      <h4>页面导航</h4>
+      <ul>
+        <li><a href="#today">今日入口速览</a></li>
+        <li><a href="#board">每日大赛榜单</a></li>
+        <li><a href="#explain">入口说明</a></li>
+        <li><a href="#browse">分类浏览</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>浏览提示</h4>
+      <ul>
+        <li><a href="#about">站点定位</a></li>
+        <li><a href="#explain">阅读注意事项</a></li>
+        <li><a href="#browse">关键词筛选</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>黑料入口每日大赛 · 内容聚合入口</span>
+    <span>摘要仅供浏览参考，请以原始内容为准</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var input = document.getElementById('kw');
+  var rows = Array.prototype.slice.call(document.querySelectorAll('#browseList .rank-row'));
+  var count = document.getElementById('count');
+  var empty = document.getElementById('emptyTip');
+  function filter(){
+    var q = (input.value || '').trim().toLowerCase();
+    var n = 0;
+    rows.forEach(function(row){
+      var text = (row.getAttribute('data-k') + ' ' + row.textContent).toLowerCase();
+      var hit = !q || text.indexOf(q) !== -1;
+      row.style.display = hit ? '' : 'none';
+      if(hit) n++;
+    });
+    count.textContent = '共 ' + n + ' 条';
+    empty.classList.toggle('show', n === 0);
+  }
+  input.addEventListener('input', filter);
+  document.querySelectorAll('nav.main-nav a').forEach(function(a){
+    a.addEventListener('click', function(){
+      document.querySelectorAll('nav.main-nav a').forEach(function(x){x.classList.remove('active');});
+      a.classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>
