@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>韩剧官网tv-韩剧在线观看_最新韩剧推荐_韩剧tv官网入口</title>
+<meta name="description" content="韩剧官网tv是韩剧爱好者的在线观看入口，汇集热门韩剧、最新韩剧推荐与经典剧目，提供剧集分类、追剧收藏与播放指引，帮助你快速找到想看的韩剧。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2315171c'/%3E%3Cpath d='M20 18h10v13h14V18h8v28h-8V38H30v8H20z' fill='%23ff5a5f'/%3E%3C/svg%3E">
+<style>
+:root{
+  --ink:#15171c;
+  --ink-2:#2b2f38;
+  --muted:#6a7180;
+  --line:#e6e3dd;
+  --bg:#fbf9f5;
+  --card:#ffffff;
+  --red:#e8434a;
+  --red-deep:#c2303a;
+  --gold:#c99a3f;
+  --radius:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+img,svg{display:block;max-width:100%}
+.wrap{width:min(1140px,92vw);margin:0 auto}
+
+/* 页头 */
+header.site{
+  position:sticky;top:0;z-index:50;
+  background:rgba(251,249,245,.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.nav{display:flex;align-items:center;gap:28px;height:68px}
+.brand{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.brand .mark{width:36px;height:36px;border-radius:10px;background:var(--ink);display:grid;place-items:center}
+.brand .mark svg{width:20px;height:20px}
+.brand span{font-weight:800;font-size:18px;letter-spacing:.3px;white-space:nowrap}
+.nav ul{display:flex;gap:26px;list-style:none;font-size:15px;color:var(--ink-2)}
+.nav ul a{padding:6px 0;border-bottom:2px solid transparent;transition:.2s}
+.nav ul a:hover{color:var(--red);border-color:var(--red)}
+.nav .cta{
+  margin-left:auto;background:var(--red);color:#fff;font-size:14px;font-weight:600;
+  padding:9px 20px;border-radius:999px;transition:.2s;white-space:nowrap;
+}
+.nav .cta:hover{background:var(--red-deep)}
+.menu-btn{display:none;margin-left:auto;background:none;border:1px solid var(--line);border-radius:10px;padding:7px 10px;cursor:pointer}
+.menu-btn svg{width:20px;height:20px}
+
+/* 首屏 */
+.hero{
+  position:relative;overflow:hidden;
+  background:
+    radial-gradient(900px 420px at 88% -10%,rgba(232,67,74,.14),transparent 60%),
+    radial-gradient(700px 380px at 4% 110%,rgba(201,154,63,.16),transparent 60%),
+    var(--bg);
+  border-bottom:1px solid var(--line);
+}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:52px;align-items:center;padding:64px 0 60px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--red-deep);background:#fdeceb;border:1px solid #f8d2d1;padding:5px 13px;border-radius:999px;letter-spacing:.4px}
+.eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--red)}
+h1{font-size:clamp(30px,4.4vw,46px);line-height:1.25;font-weight:900;letter-spacing:-.5px;margin:18px 0 16px}
+h1 em{font-style:normal;color:var(--red)}
+.lede{font-size:16.5px;color:var(--ink-2);max-width:34em}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:600;
+  padding:12px 24px;border-radius:12px;transition:.2s;border:1px solid transparent;
+}
+.btn svg{width:16px;height:16px}
+.btn.primary{background:var(--ink);color:#fff}
+.btn.primary:hover{background:var(--red)}
+.btn.ghost{background:#fff;border-color:var(--line);color:var(--ink-2)}
+.btn.ghost:hover{border-color:var(--red);color:var(--red)}
+.hero-stats{display:flex;gap:32px;margin-top:34px;flex-wrap:wrap}
+.hero-stats div strong{display:block;font-size:24px;font-weight:900;letter-spacing:-.5px}
+.hero-stats div span{font-size:13px;color:var(--muted)}
+
+/* 首屏装饰卡堆 */
+.poster-stack{position:relative;height:400px}
+.poster{
+  position:absolute;border-radius:18px;overflow:hidden;
+  box-shadow:0 18px 40px -18px rgba(21,23,28,.45);
+  border:5px solid #fff;
+}
+.poster svg{width:100%;height:100%}
+.p1{width:60%;height:78%;left:6%;top:6%;transform:rotate(-5deg);z-index:2}
+.p2{width:56%;height:70%;right:0;top:0;transform:rotate(4deg);z-index:1}
+.p3{width:52%;height:52%;right:12%;bottom:0;transform:rotate(-2deg);z-index:3}
+.badge-float{
+  position:absolute;left:-6px;bottom:14%;z-index:5;
+  background:#fff;border:1px solid var(--line);border-radius:14px;
+  padding:10px 16px;box-shadow:0 12px 30px -14px rgba(21,23,28,.35);
+  font-size:13px;font-weight:700;display:flex;align-items:center;gap:8px;
+}
+.badge-float i{width:8px;height:8px;border-radius:50%;background:#25a35a;display:block}
+
+/* 通用区块 */
+section.block{padding:64px 0}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:32px;flex-wrap:wrap}
+.sec-head h2{font-size:26px;font-weight:900;letter-spacing:-.3px}
+.sec-head p{color:var(--muted);font-size:14.5px;margin-top:6px;max-width:40em}
+.sec-link{font-size:14px;font-weight:600;color:var(--red-deep);white-space:nowrap}
+.sec-link:hover{text-decoration:underline}
+
+/* 剧集卡 */
+.drama-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.drama{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  overflow:hidden;transition:.25s;display:flex;flex-direction:column;
+}
+.drama:hover{transform:translateY(-4px);box-shadow:0 20px 36px -22px rgba(21,23,28,.4);border-color:#ded9d1}
+.drama .thumb{aspect-ratio:3/4;position:relative;overflow:hidden}
+.drama .thumb svg{width:100%;height:100%;transition:.4s}
+.drama:hover .thumb svg{transform:scale(1.05)}
+.tag{
+  position:absolute;top:10px;left:10px;font-size:11px;font-weight:700;
+  background:rgba(21,23,28,.78);color:#fff;padding:3px 9px;border-radius:6px;letter-spacing:.5px;
+}
+.tag.hot{background:var(--red)}
+.drama .body{padding:14px 15px 16px;display:flex;flex-direction:column;gap:6px;flex:1}
+.drama h3{font-size:15.5px;font-weight:700;line-height:1.45}
+.drama .meta{font-size:12.5px;color:var(--muted)}
+.drama .foot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;padding-top:10px;border-top:1px dashed var(--line)}
+.drama .score{font-size:13px;font-weight:800;color:var(--gold)}
+.drama .go{font-size:13px;font-weight:600;color:var(--red-deep)}
+
+/* 分类 */
+.cat-band{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.cat{
+  border:1px solid var(--line);border-radius:var(--radius);padding:22px 22px 20px;
+  background:linear-gradient(180deg,#fff, #faf8f4);transition:.22s;
+}
+.cat:hover{border-color:var(--red);box-shadow:0 16px 30px -24px rgba(232,67,74,.6)}
+.cat .ico{width:40px;height:40px;border-radius:11px;display:grid;place-items:center;background:#fdeceb;margin-bottom:14px}
+.cat .ico svg{width:20px;height:20px;stroke:var(--red-deep)}
+.cat h3{font-size:16.5px;font-weight:800;margin-bottom:6px}
+.cat p{font-size:13.5px;color:var(--muted);line-height:1.7}
+.cat .count{display:inline-block;margin-top:12px;font-size:12.5px;font-weight:700;color:var(--ink-2);background:#f1eee8;padding:3px 10px;border-radius:999px}
+
+/* 追剧指南（正文） */
+.read-grid{display:grid;grid-template-columns:1.5fr .9fr;gap:44px;align-items:start}
+.article h2{font-size:24px;font-weight:900;margin-bottom:16px;letter-spacing:-.3px}
+.article h3{font-size:17px;font-weight:800;margin:26px 0 8px}
+.article p{font-size:15.5px;color:var(--ink-2);margin-bottom:12px}
+.article p strong{color:var(--ink);font-weight:800}
+.side{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+.side h3{font-size:16px;font-weight:800;margin-bottom:14px}
+.side ol{list-style:none;counter-reset:n;display:flex;flex-direction:column;gap:14px}
+.side ol li{counter-increment:n;display:flex;gap:12px;font-size:14px;color:var(--ink-2)}
+.side ol li::before{
+  content:counter(n);flex-shrink:0;width:22px;height:22px;border-radius:7px;
+  background:var(--ink);color:#fff;font-size:12px;font-weight:800;
+  display:grid;place-items:center;margin-top:2px;
+}
+.side .note{margin-top:18px;padding-top:16px;border-top:1px dashed var(--line);font-size:13px;color:var(--muted)}
+
+/* 搜索筛选 */
+.search-panel{background:var(--ink);color:#fff;border-radius:22px;padding:38px 40px;display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:center}
+.search-panel h2{font-size:24px;font-weight:900;letter-spacing:-.3px;margin-bottom:10px}
+.search-panel p{font-size:14px;color:#b9bec9;max-width:32em}
+.search-box{display:flex;gap:10px;background:#fff;border-radius:13px;padding:6px;margin-top:6px}
+.search-box input{
+  flex:1;border:0;outline:0;font-size:15px;padding:10px 14px;color:var(--ink);
+  font-family:inherit;background:transparent;
+}
+.search-box button{
+  border:0;background:var(--red);color:#fff;font-family:inherit;font-size:14.5px;font-weight:700;
+  padding:11px 22px;border-radius:9px;cursor:pointer;transition:.2s;
+}
+.search-box button:hover{background:var(--red-deep)}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.chip{
+  font-size:13px;padding:6px 14px;border-radius:999px;cursor:pointer;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);color:#dfe2e8;
+  font-family:inherit;transition:.2s;
+}
+.chip:hover{background:rgba(255,255,255,.16)}
+.chip.active{background:var(--red);border-color:var(--red);color:#fff;font-weight:700}
+.result-line{margin-top:14px;font-size:13px;color:#9aa1ae}
+.result-line b{color:#fff}
+
+/* 列表 */
+.list{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.row{
+  display:grid;grid-template-columns:56px 1fr auto;gap:18px;align-items:center;
+  padding:18px 6px;border-bottom:1px solid var(--line);transition:.2s;
+}
+.row:hover{background:#fff;padding-left:14px}
+.row .rank{font-size:20px;font-weight:900;color:#cfc9bf;letter-spacing:-1px}
+.row:nth-child(-n+3) .rank{color:var(--red)}
+.row h3{font-size:15.5px;font-weight:700;margin-bottom:3px}
+.row .desc{font-size:13px;color:var(--muted)}
+.row .pill{font-size:12px;font-weight:700;color:var(--ink-2);background:#f1eee8;padding:4px 12px;border-radius:999px;white-space:nowrap}
+
+/* 下载 */
+.dl{
+  display:flex;align-items:center;gap:24px;flex-wrap:wrap;
+  background:linear-gradient(120deg,#fff5f4,#fdf6ea);
+  border:1px solid #f3ddd9;border-radius:22px;padding:32px 36px;
+}
+.dl .txt{flex:1;min-width:260px}
+.dl h2{font-size:21px;font-weight:900;margin-bottom:6px}
+.dl p{font-size:14px;color:var(--ink-2)}
+.btn.download{background:var(--red);color:#fff;pointer-events:none;opacity:.95}
+.btn.download svg{stroke:#fff}
+
+/* 页尾 */
+footer.site{background:var(--ink);color:#c3c8d1;padding:52px 0 28px;margin-top:20px}
+.f-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:34px;padding-bottom:34px;border-bottom:1px solid rgba(255,255,255,.12)}
+.f-brand{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.f-brand .mark{width:34px;height:34px;border-radius:9px;background:var(--red);display:grid;place-items:center}
+.f-brand .mark svg{width:18px;height:18px}
+.f-brand span{color:#fff;font-weight:800;font-size:17px}
+footer.site p{font-size:13.5px;line-height:1.8;color:#9aa1ae;max-width:30em}
+footer.site h4{color:#fff;font-size:14px;font-weight:800;margin-bottom:12px}
+footer.site ul{list-style:none;display:flex;flex-direction:column;gap:9px;font-size:13.5px}
+footer.site ul a:hover{color:#fff}
+.f-bottom{padding-top:22px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:12.5px;color:#7f8694}
+
+@media(max-width:960px){
+  .hero-grid{grid-template-columns:1fr;gap:36px;padding:44px 0 48px}
+  .poster-stack{height:320px;max-width:420px}
+  .drama-grid{grid-template-columns:repeat(2,1fr)}
+  .cat-grid{grid-template-columns:1fr}
+  .read-grid{grid-template-columns:1fr;gap:30px}
+  .search-panel{grid-template-columns:1fr;padding:30px 26px}
+  .f-top{grid-template-columns:1fr 1fr}
+}
+@media(max-width:720px){
+  .nav{gap:12px;height:62px}
+  .nav ul{display:none}
+  .nav .cta{display:none}
+  .menu-btn{display:block}
+  .nav.open ul{
+    display:flex;flex-direction:column;gap:0;position:absolute;top:62px;left:0;right:0;
+    background:#fff;border-bottom:1px solid var(--line);padding:8px 6vw 16px;
+  }
+  .nav.open ul a{display:block;padding:12px 0;font-size:15px}
+  section.block{padding:46px 0}
+  h1{font-size:30px}
+  .hero-stats{gap:22px}
+  .drama-grid{gap:14px}
+  .drama h3{font-size:14.5px}
+  .row{grid-template-columns:38px 1fr;gap:12px}
+  .row .pill{display:none}
+  .dl{padding:26px 22px}
+  .f-top{grid-template-columns:1fr}
+}
+</style>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap nav" id="nav">
+    <a class="brand" href="#top" aria-label="韩剧官网tv 首页">
+      <span class="mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M5 6h5v5h4V6h5v12h-5v-3h-4v3H5z" fill="#ff5a5f"/></svg>
+      </span>
+      <span>韩剧官网tv</span>
+    </a>
+    <ul>
+      <li><a href="#hot">热播剧集</a></li>
+      <li><a href="#cats">剧集分类</a></li>
+      <li><a href="#guide">追剧指南</a></li>
+      <li><a href="#rank">人气排行</a></li>
+      <li><a href="#dl">客户端</a></li>
+    </ul>
+    <a class="cta" href="#search">开始找剧</a>
+    <button class="menu-btn" id="menuBtn" aria-label="展开导航" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#15171c" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- 首屏 -->
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">韩剧在线观看入口</span>
+        <h1>韩剧官网tv</h1>
+        <p class="lede">韩剧官网tv把分散在各处的韩剧信息收拢到一处：热播新剧、口碑经典、题材分类与追剧清单都在同一页面。想找一部剧，不必再翻十几个列表，从这里开始就能定位。</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#hot">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7z"/></svg>
+            浏览热播剧集
+          </a>
+          <a class="btn ghost" href="#search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+            按题材筛选
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div><strong>12</strong><span>题材分类</span></div>
+          <div><strong>4</strong><span>剧集榜单维度</span></div>
+          <div><strong>每日</strong><span>更新剧集动态</span></div>
+        </div>
+      </div>
+
+      <div class="poster-stack" aria-hidden="true">
+        <div class="poster p2">
+          <svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice">
+            <defs><linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3b5bdb"/><stop offset="1" stop-color="#1b2559"/></linearGradient></defs>
+            <rect width="300" height="400" fill="url(#g2)"/>
+            <circle cx="220" cy="90" r="52" fill="#fff" opacity=".14"/>
+            <circle cx="90" cy="300" r="70" fill="#fff" opacity=".08"/>
+            <path d="M0 300 Q75 250 150 300 T300 300 V400 H0Z" fill="#0f1638" opacity=".55"/>
+            <rect x="110" y="150" width="80" height="110" rx="10" fill="#fff" opacity=".2"/>
+          </svg>
+        </div>
+        <div class="poster p1">
+          <svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice">
+            <defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff8a8f"/><stop offset="1" stop-color="#c2303a"/></linearGradient></defs>
+            <rect width="300" height="400" fill="url(#g1)"/>
+            <circle cx="150" cy="140" r="58" fill="#fff" opacity=".22"/>
+            <path d="M0 320 Q80 250 160 310 T300 290 V400 H0Z" fill="#7d1c25" opacity=".5"/>
+            <rect x="60" y="60" width="180" height="6" rx="3" fill="#fff" opacity=".35"/>
+          </svg>
+        </div>
+        <div class="poster p3">
+          <svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice">
+            <defs><linearGradient id="g3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f0c46a"/><stop offset="1" stop-color="#a9761f"/></linearGradient></defs>
+            <rect width="300" height="400" fill="url(#g3)"/>
+            <circle cx="80" cy="90" r="44" fill="#fff" opacity=".25"/>
+            <path d="M0 340 Q100 290 200 340 T300 330 V400 H0Z" fill="#6b4a12" opacity=".5"/>
+            <rect x="120" y="190" width="60" height="60" rx="30" fill="#fff" opacity=".28"/>
+          </svg>
+        </div>
+        <div class="badge-float"><i></i>今日更新 6 部</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 热播剧集 -->
+  <section class="block" id="hot">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <h2>本周热播剧集</h2>
+          <p>按上线时间与讨论热度选取的近期剧目，涵盖爱情、悬疑、家庭与职场等方向，每部附一句简介方便快速判断是否合口味。</p>
+        </div>
+        <a class="sec-link" href="#rank">查看完整排行 →</a>
+      </div>
+
+      <div class="drama-grid">
+        <article class="drama">
+          <div class="thumb">
+            <span class="tag hot">热播</span>
+            <svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice">
+              <defs><linearGradient id="d1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff9a9e"/><stop offset="1" stop-color="#b02a37"/></linearGradient></defs>
+              <rect width="300" height="400" fill="url(#d1)"/>
+              <circle cx="200" cy="120" r="60" fill="#fff" opacity=".2"/>
+              <path d="M0 330 Q90 270 180 330 T300 320 V400 H0Z" fill="#701a24" opacity=".5"/>
+            </svg>
+          </div>
+          <div class="body">
+            <h3>春日来信</h3>
+            <p class="meta">爱情 / 都市 · 16集</p>
+            <div class="foot"><span class="score">9.1</span><span class="go">加入追剧</span></div>
+          </div>
+        </article>
+
+        <article class="drama">
+          <div class="thumb">
+            <span class="tag">悬疑</span>
+            <svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice">
+              <defs><linearGradient id="d2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4b6cb7"/><stop offset="1" stop-color="#182848"/></linearGradient></defs>
+              <rect width="300" height="400" fill="url(#d2)"/>
+              <circle cx="110" cy="110" r="46" fill="#fff" opacity=".18"/>
+              <path d="M0 300 Q100 250 200 300 T300 300 V400 H0Z" fill="#0c1730" opacity=".55"/>
+            </svg>
+          </div>
+          <div class="body">
+            <h3>第七个夜晚</h3>
+            <p class="meta">悬疑 / 刑侦 · 12集</p>
+            <div class="foot"><span class="score">8.8</span><span class="go">加入追剧</span></div>
+          </div>
+        </article>
+
+        <article class="drama">
+          <div class="thumb">
+            <span class="tag">口碑</span>
+            <svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice">
+              <defs><linearGradient id="d3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f7d774"/><stop offset="1" stop-color="#b07e1c"/></linearGradient></defs>
+              <rect width="300" height="400" fill="url(#d3)"/>
+              <circle cx="220" cy="300" r="70" fill="#fff" opacity=".16"/>
+              <path d="M0 310 Q100 260 200 310 T300 300 V400 H0Z" fill="#7a5510" opacity=".5"/>
+            </svg>
+          </div>
+          <div class="body">
+            <h3>我们的旧时光</h3>
+            <p class="meta">家庭 / 治愈 · 20集</p>
+            <div class="foot"><span class="score">9.3</span><span class="go">加入追剧</span></div>
+          </div>
+        </article>
+
+        <article class="drama">
+          <div class="thumb">
+            <span class="tag">新剧</span>
+            <svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice">
+              <defs><linearGradient id="d4" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7ad0a3"/><stop offset="1" stop-color="#1e5e42"/></linearGradient></defs>
+              <rect width="300" height="400" fill="url(#d4)"/>
+              <circle cx="90" cy="140" r="54" fill="#fff" opacity=".2"/>
+              <path d="M0 320 Q90 260 180 320 T300 310 V400 H0Z" fill="#12402d" opacity=".55"/>
+            </svg>
+          </div>
+          <div class="body">
+            <h3>办公室的午后</h3>
+            <p class="meta">职场 / 喜剧 · 12集</p>
+            <div class="foot"><span class="score">8.5</span><span class="go">加入追剧</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 分类 -->
+  <div class="cat-band">
+    <section class="block" id="cats">
+      <div class="wrap">
+        <div class="sec-head">
+          <div>
+            <h2>按题材找剧</h2>
+            <p>韩剧官网tv把剧目按题材归入几大类，先确定想看的方向，再在类目里挑选，比逐部翻看更省时间。</p>
+          </div>
+        </div>
+        <div class="cat-grid">
+          <div class="cat">
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg></div>
+            <h3>浪漫爱情</h3>
+            <p>从校园初恋到都市重逢，主打情感推进与人物成长，适合想放松心情的观众。</p>
+            <span class="count">收录 128 部</span>
+          </div>
+          <div class="cat">
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></div>
+            <h3>悬疑推理</h3>
+            <p>案件推进与线索反转并行，多为短集数结构，适合一次连看数集的追剧节奏。</p>
+            <span class="count">收录 76 部</span>
+          </div>
+          <div class="cat">
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 10v10h14V10"/></svg></div>
+            <h3>家庭生活</h3>
+            <p>聚焦几代人的日常与关系变化，节奏平稳，适合与家人一起观看。</p>
+            <span class="count">收录 64 部</span>
+          </div>
+          <div class="cat">
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5h8v2"/></svg></div>
+            <h3>职场喜剧</h3>
+            <p>以办公室与行业现场为背景，用轻喜剧方式讲职场关系与个人选择。</p>
+            <span class="count">收录 41 部</span>
+          </div>
+          <div class="cat">
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 8l7-5 7 5"/></svg></div>
+            <h3>古装历史</h3>
+            <p>以历史背景或架空王朝为舞台，服化道与人物关系是主要看点。</p>
+            <span class="count">收录 53 部</span>
+          </div>
+          <div class="cat">
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18V9M10 18V5M16 18v-6M22 18H2"/></svg></div>
+            <h3>医疗律政</h3>
+            <p>专业场景推动剧情，案情与病例构成单元故事，主线贯穿全剧。</p>
+            <span class="count">收录 38 部</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- 追剧指南 -->
+  <section class="block" id="guide">
+    <div class="wrap read-grid">
+      <div class="article">
+        <h2>在韩剧官网tv怎么追一部剧</h2>
+        <p>韩剧的播出节奏与国产剧不同，多数剧目每周固定更新两集，一部 16 集的剧通常要花两个月左右追完。理解这个节奏，能帮你更好地安排观看时间，也能避免被中途的讨论打乱观感。</p>
+
+        <h3>先确认播出状态</h3>
+        <p>打开韩剧官网tv的剧集页，第一件要看的是播出状态：<strong>正在更新、已完结、待定档</strong>三种情况对应完全不同的观看方式。正在更新的剧适合按周追，已完结的剧适合一次连看，待定档的剧则可以先加入清单，等上线再回来看。</p>
+
+        <h3>按集数规划时间</h3>
+        <p>12 集左右的短剧节奏紧凑，适合周末集中看完；16 到 20 集的中长剧通常有更完整的人物铺垫，适合分几天推进；超过 50 集的长篇家庭剧则更适合当作日常陪伴，不必追求一口气看完。</p>
+
+        <h3>用清单管理追剧进度</h3>
+        <p>同时追三四部剧时，最容易出现的问题是记混剧情。韩剧官网tv提供加入追剧清单的功能，把在看的剧收进同一个列表，按更新顺序排列，每次打开就能看到下一部该看什么，不必再凭记忆回想。</p>
+
+        <p>如果你更在意口碑，可以先看榜单再决定；如果只想找一部轻松的下饭剧，从喜剧与家庭类目入手会更高效。韩剧官网tv的分类与榜单正是为这两种不同的选择方式准备的。</p>
+      </div>
+
+      <aside class="side">
+        <h3>追剧前的四个确认</h3>
+        <ol>
+          <li>核对播出状态，区分连载与完结。</li>
+          <li>看清总集数与单集时长。</li>
+          <li>确认题材标签是否符合口味。</li>
+          <li>加入清单，按更新顺序推进。</li>
+        </ol>
+        <p class="note">以上为通用的观看安排建议，具体更新节奏以剧集页显示的状态为准。</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 搜索筛选 + 排行 -->
+  <section class="block" id="search" style="padding-top:0">
+    <div class="wrap">
+      <div class="search-panel">
+        <div>
+          <h2>快速找剧</h2>
+          <p>输入剧名关键词，或点选下方题材标签，结果会直接显示在页面下方。所有剧集条目都写在页面里，无需等待加载。</p>
+          <div class="filters" id="chips">
+            <button class="chip active" data-cat="全部">全部</button>
+            <button class="chip" data-cat="爱情">爱情</button>
+            <button class="chip" data-cat="悬疑">悬疑</button>
+            <button class="chip" data-cat="家庭">家庭</button>
+            <button class="chip" data-cat="职场">职场</button>
+          </div>
+        </div>
+        <div>
+          <div class="search-box">
+            <input id="q" type="search" placeholder="输入剧名，如：春日来信" aria-label="搜索剧名">
+            <button id="go">搜索</button>
+          </div>
+          <p class="result-line" id="resultLine">当前显示 <b>全部</b> 剧集</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="rank" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <h2>人气排行</h2>
+          <p>依据站内收藏与讨论热度综合排序，每周更新一次。排行只反映关注度，不代表剧集质量评价。</p>
+        </div>
+        <a class="sec-link" href="#dl">获取客户端 →</a>
+      </div>
+
+      <div class="list" id="list">
+        <a class="row" href="#hot" data-cat="爱情" data-name="春日来信">
+          <span class="rank">01</span>
+          <span><h3>春日来信</h3><span class="desc">爱情 / 都市 · 16集 · 评分 9.1</span></span>
+          <span class="pill">爱情</span>
+        </a>
+        <a class="row" href="#hot" data-cat="家庭" data-name="我们的旧时光">
+          <span class="rank">02</span>
+          <span><h3>我们的旧时光</h3><span class="desc">家庭 / 治愈 · 20集 · 评分 9.3</span></span>
+          <span class="pill">家庭</span>
+        </a>
+        <a class="row" href="#hot" data-cat="悬疑" data-name="第七个夜晚">
+          <span class="rank">03</span>
+          <span><h3>第七个夜晚</h3><span class="desc">悬疑 / 刑侦 · 12集 · 评分 8.8</span></span>
+          <span class="pill">悬疑</span>
+        </a>
+        <a class="row" href="#hot" data-cat="职场" data-name="办公室的午后">
+          <span class="rank">04</span>
+          <span><h3>办公室的午后</h3><span class="desc">职场 / 喜剧 · 12集 · 评分 8.5</span></span>
+          <span class="pill">职场</span>
+        </a>
+        <a class="row" href="#hot" data-cat="爱情" data-name="海边的第二封信">
+          <span class="rank">05</span>
+          <span><h3>海边的第二封信</h3><span class="desc">爱情 / 青春 · 14集 · 评分 8.6</span></span>
+          <span class="pill">爱情</span>
+        </a>
+        <a class="row" href="#hot" data-cat="悬疑" data-name="无声的证词">
+          <span class="rank">06</span>
+          <span><h3>无声的证词</h3><span class="desc">悬疑 / 律政 · 10集 · 评分 8.9</span></span>
+          <span class="pill">悬疑</span>
+        </a>
+      </div>
+      <p class="result-line" id="emptyTip" style="display:none;color:var(--muted);margin-top:16px">没有匹配的剧集，换个关键词或题材试试。</p>
+    </div>
+  </section>
+
+  <!-- 下载 -->
+  <section class="block" id="dl" style="padding-top:0">
+    <div class="wrap">
+      <div class="dl">
+        <div class="txt">
+          <h2>韩剧官网tv 客户端</h2>
+          <p>客户端把追剧清单与观看记录同步到本地，离线时会保留已加入列表的剧集信息，适合在通勤路上翻看更新。</p>
+        </div>
+        <a class="btn download" href="#" data-download-placeholder="true" aria-disabled="true" tabindex="-1">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v10m0 0 4-4m-4 4-4-4"/><path d="M5 18h14"/></svg>
+          下载
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="f-top">
+      <div>
+        <div class="f-brand">
+          <span class="mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M5 6h5v5h4V6h5v12h-5v-3h-4v3H5z" fill="#fff"/></svg>
+          </span>
+          <span>韩剧官网tv</span>
+        </div>
+        <p>韩剧官网tv是面向韩剧观众的剧集信息与观看入口页面，提供剧集分类、追剧清单与热度排行，帮助你在众多剧目中更快做出选择。</p>
+      </div>
+      <div>
+        <h4>浏览</h4>
+        <ul>
+          <li><a href="#hot">热播剧集</a></li>
+          <li><a href="#cats">剧集分类</a></li>
+          <li><a href="#rank">人气排行</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>使用</h4>
+        <ul>
+          <li><a href="#guide">追剧指南</a></li>
+          <li><a href="#search">快速找剧</a></li>
+          <li><a href="#dl">客户端下载</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>说明</h4>
+        <ul>
+          <li><a href="#top">返回顶部</a></li>
+          <li><a href="#guide">播出状态</a></li>
+          <li><a href="#rank">排行规则</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="f-bottom">
+      <span>© 2025 韩剧官网tv · 剧集信息以页面显示为准</span>
+      <span>本站为剧集信息入口页面</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var nav = document.getElementById('nav');
+  var btn = document.getElementById('menuBtn');
+  if(btn){
+    btn.addEventListener('click', function(){
+      var open = nav.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  }
+
+  var chips = document.querySelectorAll('#chips .chip');
+  var rows = document.querySelectorAll('#list .row');
+  var q = document.getElementById('q');
+  var go = document.getElementById('go');
+  var resultLine = document.getElementById('resultLine');
+  var emptyTip = document.getElementById('emptyTip');
+  var currentCat = '全部';
+
+  function apply(){
+    var kw = (q.value || '').trim();
+    var shown = 0;
+    rows.forEach(function(row){
+      var okCat = currentCat === '全部' || row.getAttribute('data-cat') === currentCat;
+      var okKw = !kw || row.getAttribute('data-name').indexOf(kw) > -1;
+      var show = okCat && okKw;
+      row.style.display = show ? 'grid' : 'none';
+      if(show) shown++;
+    });
+    var label = currentCat === '全部' ? '全部' : currentCat;
+    if(kw){
+      resultLine.innerHTML = '“' + kw + '” 在 <b>' + label + '</b> 中找到 <b>' + shown + '</b> 部剧集';
+    }else{
+      resultLine.innerHTML = '当前显示 <b>' + label + '</b> 剧集，共 <b>' + shown + '</b> 部';
+    }
+    emptyTip.style.display = shown ? 'none' : 'block';
+  }
+
+  chips.forEach(function(chip){
+    chip.addEventListener('click', function(){
+      chips.forEach(function(c){ c.classList.remove('active'); });
+      chip.classList.add('active');
+      currentCat = chip.getAttribute('data-cat');
+      apply();
+    });
+  });
+
+  go.addEventListener('click', apply);
+  q.addEventListener('input', apply);
+  q.addEventListener('keydown', function(e){ if(e.key === 'Enter'){ e.preventDefault(); apply(); } });
+})();
+</script>
+</body>
+  </html>
